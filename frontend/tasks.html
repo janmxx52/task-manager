@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý công việc</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+
+  <style>
+    .task-item {
+      border: 1px solid #ccc;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      background: #fafafa;
+    }
+
+    .task-buttons {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .edit-btn {
+      background: orange;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .delete-btn {
+      background: red;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    /* MODAL */
+    #editModal {
+      background: white;
+      border: 2px solid #333;
+      padding: 20px;
+      width: 300px;
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 10px;
+      box-shadow: 0 0 10px #0005;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Danh sách công việc</h2>
+
+  <button onclick="logout()">Đăng xuất</button>
+
+  <h3>Thêm công việc</h3>
+  <input type="text" id="taskTitle" placeholder="Tiêu đề">
+  <input type="text" id="taskDesc" placeholder="Mô tả">
+
+  <select id="taskStatus">
+    <option value="PENDING">Chờ xử lý</option>
+    <option value="IN_PROGRESS">Đang tiến hành</option>
+    <option value="COMPLETED">Hoàn thành</option>
+  </select>
+
+  <button onclick="createTask()">Thêm</button>
+
+  <h3>Tìm kiếm công việc</h3>
+  <input type="text" id="searchBox" placeholder="Nhập tên task..." onkeyup="searchTasks()">
+
+  <h3>Công việc của bạn</h3>
+  <div id="taskList"></div>
+</div>
+
+<!-- EDIT MODAL -->
+<div id="editModal" style="display:none;">
+  <h3>Chỉnh sửa công việc</h3>
+
+  <input type="text" id="editTitle" placeholder="Tiêu đề">
+  <input type="text" id="editDesc" placeholder="Mô tả">
+  
+  <select id="editStatus">
+    <option value="PENDING">Chờ xử lý</option>
+    <option value="IN_PROGRESS">Đang tiến hành</option>
+    <option value="COMPLETED">Hoàn thành</option>
+  </select>
+
+  <div style="margin-top: 10px;">
+    <button onclick="saveEditTask()">Lưu</button>
+    <button onclick="closeEditModal()">Hủy</button>
+  </div>
+</div>
+
+</body>
+</html>

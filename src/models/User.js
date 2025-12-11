@@ -11,15 +11,12 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       trim: true,
     },
-    password: { type: String, required: true, minlength: 6 }
+    password: { type: String, required: true, minlength: 6 },
   },
   { timestamps: true }
 );
 
-// PRE-SAVE MIDDLEWARE (Mongoose 7+)
-//
-// ❗ KHÔNG dùng next() trong async function
-// ❗ KHÔNG nhận tham số next
+// Mongoose 7+ – async pre không dùng next
 userSchema.pre("save", async function () {
   if (!this.isModified("password")) return;
 
@@ -27,7 +24,7 @@ userSchema.pre("save", async function () {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-// Compare password
+// So sánh password khi login
 userSchema.methods.comparePassword = async function (passwordInput) {
   return bcrypt.compare(passwordInput, this.password);
 };

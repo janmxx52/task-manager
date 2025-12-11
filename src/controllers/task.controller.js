@@ -1,4 +1,3 @@
-// src/controllers/task.controller.js
 const Task = require("../models/Task");
 
 // POST /api/tasks

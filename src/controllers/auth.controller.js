@@ -1,4 +1,3 @@
-// src/controllers/auth.controller.js
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
@@ -72,10 +71,13 @@ const login = async (req, res, next) => {
   }
 };
 
-// (optional) GET /api/auth/me
+// GET /api/auth/me
 const getMe = async (req, res) => {
   res.json({ user: req.user });
 };
+
+// Logout: ở backend dùng JWT thì thường là xóa token ở client.
+// Có thể làm thêm blacklist nếu muốn nâng cao.
 
 module.exports = {
   register,

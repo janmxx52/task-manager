@@ -1,4 +1,3 @@
-// server.js
 require("dotenv").config();
 const express = require("express");
 const helmet = require("helmet");
@@ -12,16 +11,13 @@ const errorHandler = require("./src/middlewares/error.middleware");
 
 const app = express();
 
-// Kết nối DB
 connectDB();
 
-// Middleware chung
 app.use(helmet());
-app.use(cors()); // bạn có thể cấu hình origin cho chặt hơn
+app.use(cors());
 app.use(morgan("dev"));
-app.use(express.json()); // parse JSON body
+app.use(express.json());
 
-// Routes
 app.get("/", (req, res) => {
   res.json({ message: "Task Management API by Hau Dev" });
 });
@@ -29,7 +25,6 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 
-// Middleware xử lý lỗi (đặt cuối)
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;

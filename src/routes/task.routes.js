@@ -1,4 +1,3 @@
-// src/routes/task.routes.js
 const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../middlewares/auth.middleware");
@@ -10,7 +9,7 @@ const {
   deleteTask,
 } = require("../controllers/task.controller");
 
-// tất cả route task đều cần login
+// tất cả routes task đều cần đăng nhập
 router.use(authMiddleware);
 
 router.post("/", createTask);

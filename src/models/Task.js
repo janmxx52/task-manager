@@ -1,4 +1,3 @@
-// src/models/Task.js
 const mongoose = require("mongoose");
 
 const taskSchema = new mongoose.Schema(
@@ -22,8 +21,6 @@ const taskSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    // nếu bạn muốn assign cho người khác thì thêm:
-    // assignedTo: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
   },
   { timestamps: true }
 );
